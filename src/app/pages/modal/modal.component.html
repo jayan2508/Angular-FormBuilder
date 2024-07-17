@@ -1,0 +1,10 @@
+<div class="modal-overlay" (click)="onClose()"></div>
+<div class="modal-content">
+    <h2>Add New Tab</h2>    
+    <input type="text" [(ngModel)]="title" placeholder="Tab title" required />
+    <div class="modal-btn">
+        <button class="close-btn" (click)="onClose()">Close</button>
+        <button class="save-btn" (click)="onSave()">Save</button>
+    </div>
+</div>
+

@@ -1,0 +1,95 @@
+{
+  "tabs": [
+    {
+      "id": "f7d7689f-dcc4-4e75-81e5-a8473054f376",
+      "title": "Jay Shree",
+      "active": false,
+      "added_components": []
+    },
+    {
+      "id": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "title": "Jay Shree 2",
+      "active": true,
+      "added_components": []
+    },
+    {
+      "id": "f1778c64-94b7-438d-9855-c03ba9a08cd9",
+      "title": "Nimavi 4",
+      "active": false,
+      "added_components": []
+    }
+  ],
+  "components": [
+    {
+      "id": "b1d0e2dc-65ed-4ea4-8dd0-fe8233407282",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "HR",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 0.32501220703125,
+        "y": 1.1875
+      },
+      "gridComponent": [],
+      "element": [],
+      "showDelete": false
+    },
+    {
+      "id": "9a63ba00-1cd9-400d-b881-97c1a44fdb88",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "PM",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 122.92501831054688,
+        "y": -0.0250091552734375
+      },
+      "gridComponent": [],
+      "element": [],
+      "showDelete": false
+    },
+    {
+      "id": "ee292f69-07a8-4f35-b922-3b4c684b2c23",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "ACCOUNTANT",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 245.92501831054688,
+        "y": 0.17498779296875
+      },
+      "gridComponent": [],
+      "element": [],
+      "showDelete": false
+    },
+    {
+      "id": "a0e61ec5-da71-4492-9424-2b83309c0889",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": true,
+      "name": "Water",
+      "icon": "fa-solid fa-faucet-drip",
+      "position": {
+        "x": 376.3250427246094,
+        "y": 0
+      },
+      "gridComponent": [],
+      "element": [],
+      "showDelete": true
+    }
+  ],
+  "element": [
+    {
+      "width": "100",
+      "height": "100",
+      "alignment": "flex-start",
+      "background": "#ffffff",
+      "padding": "15",
+      "margin": "10",
+      "font": "Arial",
+      "roundedCorners": "5",
+      "border": "2",
+      "borderColor": "#000000",
+      "id": "3552"
+    }
+  ]
+}

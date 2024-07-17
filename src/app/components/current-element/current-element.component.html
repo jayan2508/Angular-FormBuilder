@@ -1,0 +1,81 @@
+<div class="panel-property">
+    <div class="panel-property-content">
+        <form [formGroup]="formDesign">
+            <div class="row mb-2">
+                <label class="col-6" for="formWidth">Width</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="formWidth" formControlName="width">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="height">Height</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="height" formControlName="height">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="alignment">Alignment</label>
+                <div class="col-6 input-content">
+                    <select class="form-control form-control-sm" id="alignment" formControlName="alignment">
+                        <option value="flex-start">Top</option>
+                        <option value="center">Center</option>
+                        <option value="flex-end">Bottom</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="pageBackground">Background</label>
+                <div class="col-6 input-content">
+                    <input type="color" class="form-control form-control-sm" id="pageBackground"
+                        formControlName="background">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="padding">Padding</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="padding"
+                        formControlName="padding">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="margin">Margin</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="margin"
+                        formControlName="margin">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="font">Font</label>
+                <div class="col-6 input-content">
+                    <select class="form-control form-control-sm" id="font" formControlName="font">
+                        <option value="Arial">Arial</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Helvetica">Helvetica</option>
+                        <option value="Lucida">Lucida</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="roundedCorners">Rounded Corners</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="roundedCorners"
+                        formControlName="roundedCorners">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="border">Border</label>
+                <div class="col-6 input-content">
+                    <input type="number" class="form-control form-control-sm" id="border"
+                        formControlName="border">
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="col-6" for="borderColor">Border Color</label>
+                <div class="col-6 input-content">
+                    <input type="color" class="form-control form-control-sm" id="borderColor"
+                        formControlName="borderColor">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

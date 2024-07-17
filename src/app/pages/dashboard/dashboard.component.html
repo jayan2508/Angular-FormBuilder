@@ -1,0 +1,184 @@
+<div class="header">
+    <p><i class="fa-solid fa-cubes"></i> FORM BUILDER</p>
+</div>
+<div class="tab-container">
+    <div class="tab-main-container">
+        <div class="tabs" cdkDropList cdkDropListOrientation="horizontal" (cdkDropListDropped)="dropTab($event)">
+            <div class="tab" *ngFor="let tab of tabs; let i = index" [class.active]="tab.active" (click)="selectTab(i)"
+                cdkDragPlaceholder cdkDrag>
+                <p>
+                    {{ tab.title }}
+                </p>
+                <div>
+                    <button class="close-btn" (click)="removeTab(i)"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            </div>
+            <button class="add-btn" (click)="openModal()"><i class="fa-solid fa-plus"></i></button>
+        </div>
+    </div>
+    <div class="tab-content">
+        <div *ngFor="let tab of tabs" [hidden]="!tab.active">
+            {{ tab.title }}
+        </div>
+        <button (click)="generatePDF()">Generate PDF</button>
+    </div>
+</div>
+
+<app-modal *ngIf="showModal" (save)="addTab($event)" (close)="closeModal()"></app-modal>
+
+<div class="main-container">
+    <div class="sidebar">
+        <h2>SECTION <i class="fa-solid fa-table-columns"></i></h2>
+        <div class="element-container">
+            <div class="component">
+                <div class="content employee-content" (click)="openSectionModal()">
+                    <i class="fa-solid fa-grip"></i>
+                    <span>Section</span>
+                </div>
+            </div>
+        </div>
+        <h2>CABIN <i class="fa-solid fa-house-laptop"></i></h2>
+        <div class="element-container">
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'HR')">
+                <div>
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>HR</span>
+                </div>
+            </div>
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'PM')">
+                <div>
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>PM</span>
+                </div>
+            </div>
+        </div>
+        <div class="element-container">
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'MD')">
+                <div>
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>MD</span>
+                </div>
+            </div>
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'ACCOUNTANT')">
+                <div>
+                    <i class="fa-solid fa-house-user"></i>
+                    <span>ACCOUNTANT</span>
+                </div>
+            </div>
+        </div>
+        <h2>PANTRY AREA <i class="fa-solid fa-kitchen-set"></i></h2>
+        <div class="element-container">
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Water')">
+                <div>
+                    <i class="fa-solid fa-faucet-drip"></i>
+                    <span>Water</span>
+                </div>
+            </div>
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Washroom')">
+                <div>
+                    <i class="fa-solid fa-sink"></i>
+                    <span>Washroom</span>
+                </div>
+            </div>
+        </div>
+        <h2>EMPLOYEE <i class="fa-solid fa-users-line"></i></h2>
+        <div class="element-container">
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Employee')">
+                <div class="employee-content">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <span>Employee</span>
+                </div>
+            </div>
+            <div class="component">
+                <div class="employee-content" (click)="showEmployeeList()">
+                    <i class="fa-solid fa-list-check"></i>
+                    <span>List</span>
+                </div>
+            </div>
+        </div>
+        <div class="list-component">
+            <div *ngIf="showEmployees">
+                <h3>Employee List</h3>
+                <ul cdkDropList (cdkDropListDropped)="dropList($event)">
+                    <li *ngFor="let employee of employees" cdkDrag cdkDrag>{{ employee }}</li>
+                </ul>
+            </div>
+        </div>
+        <h2>AREA <i class="fa-solid fa-people-roof"></i></h2>
+        <div class="element-container">
+            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Meeting Area')">
+                <div class="content">
+                    <i class="fa-solid fa-handshake"></i>
+                    <span>Meeting Area</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main">
+        <div class="drop-container example-boundary" (drop)="onDrop($event)" (dragover)="allowDrop($event)">
+            <div class="component-box" *ngFor="let component of components; let i = index"
+                [style.left.px]="component.position.x" [style.top.px]="component.position.y" draggable="true" 
+                cdkDragBoundary=".example-boundary" cdkDrag [cdkDragData]="component"
+                (cdkDragEnded)="onDragEnded($event)" [hidden]="component.activeTabId !== getActiveTabId()"
+                [class.active]="component.isSelected"
+                 (mouseenter)="showDeleteButton(i)" (mouseleave)="hideDeleteButton(i)" (click)="showComponentLog(i)">
+                <i [class]="component.icon"></i>
+                <span>{{ component.name }}</span>
+                <button class="delete-btn" (click)="showDeleteConfirmationModal(i)" [hidden]="!component.showDelete"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <h2>Current Element <i class="fa-brands fa-elementor"></i></h2>
+        <app-current-element></app-current-element>
+    </div>
+</div>
+
+<app-confirm-modal *ngIf="showDeleteModal"
+(deleteConfirmed)="deleteConfirmed($event)"
+(modalClosed)="closeDeleteConfirmationModal()"></app-confirm-modal>
+
+<div *ngIf="showSectionModal" class="modal-content">
+    <div class="model-header">
+        <h2>Select a Layout</h2>
+        <i class="fa-solid fa-xmark" (click)="closeSectionModal()"></i>
+    </div>
+    <div class="section-layouts">
+        <div class="layout-container">
+            <div class="layout-option" (click)="selectLayout('col2')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col2')">
+                <img src="./assets/image/col2.png" alt="Layout" class="img-fluid">
+            </div>
+            <div class="layout-option" (click)="selectLayout('col3')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col3')">
+                <img src="./assets/image/col3.png" alt="Layout" class="img-fluid">
+            </div>
+        </div>
+        <div class="layout-container">
+            <div class="layout-option" (click)="selectLayout('col4')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col4')">
+                <img src="./assets/image/col4.png" alt="Layout" class="img-fluid">
+            </div>
+            <div class="layout-option" (click)="selectLayout('col5')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col5')">
+                <img src="./assets/image/col5.png" alt="Layout" class="img-fluid">
+            </div>
+        </div>
+        <div class="layout-container">
+            <div class="layout-option" (click)="selectLayout('col2-1-3')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col2-1-3')">
+                <img src="./assets/image/col2-1-3.png" alt="Layout" class="img-fluid">
+            </div>
+            <div class="layout-option" (click)="selectLayout('col2-3-1')" draggable="true"
+                (dragstart)="onLayoutDragStart($event, 'col2-3-1')">
+                <img src="./assets/image/col2-3-1.png" alt="Layout" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <ejs-diagram #diagram id="diagram" width="100%" height="580px" [getNodeDefaults]='getNodeDefaults'>
+                <e-nodes>
+                    <e-node id='node1' [offsetX]=150 [offsetY]=150 [shape]='shape'></e-node>
+                </e-nodes>
+            </ejs-diagram> -->

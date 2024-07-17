@@ -1,1 +1,201 @@
-/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
+div[style*="position: fixed;"][style*="top: 10px;"] {
+  display: none;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  font-family: "Bricolage Grotesque", sans-serif;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  font-size: 14px;
+}
+h3 {
+  margin: 0;
+}
+
+.header {
+  height: 64px;
+  width: 100%;
+  background: linear-gradient(135deg, #0143a3, #0273d4);
+  display: flex;
+  align-items: center;
+}
+.header p {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 20px;
+  color: white;
+  letter-spacing: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.tab-container {
+  width: 100%;
+}
+.tab-main-container {
+  width: 100%;
+}
+.tabs {
+  display: flex;
+  align-items: center;
+  background-color: #0c0f15;
+  color: white;
+}
+
+.tab {
+  padding: 10px;
+  cursor: pointer;
+  position: relative;
+  width: 15%;
+  display: flex;
+  margin: 5px;
+  justify-content: space-between;
+}
+p {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 !important;
+}
+
+.tab.active {
+  background-color: #30393d;
+  border-radius: 5px;
+}
+
+.tab:hover {
+  background-color: #1a2124;
+  border-radius: 5px;
+}
+
+.tab-container .fa-solid {
+  color: white;
+}
+
+.close-btn {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 3px 6px;
+}
+.close-btn:hover {
+  border-radius: 50%;
+  background-color: #41474b;
+}
+
+.add-btn {
+  margin-left: auto;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.add-btn:hover {
+  border-radius: 50%;
+  background-color: #41474b;
+}
+
+.tab-content {
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  div {
+    font-size: 20px;
+    letter-spacing: 3px;
+  }
+}
+.tab-content button {
+  background: linear-gradient(135deg, #0143a3, #0273d4);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px;
+  color: white;
+  cursor: pointer;
+}
+
+.list-component h3 {
+  color: #b8b8b8;
+  margin: 0;
+}
+.list-component ul {
+  height: 243px;
+  overflow: auto;
+  padding: 0;
+  margin: 0;
+}
+.list-component ul li {
+  padding: 5px;
+  cursor: pointer;
+  transition: all 0.5s;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  margin: 10px 10px 10px 2px;
+  list-style: none;
+}
+.list-component ul li:hover {
+  background-color: #ddd;
+  box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+    rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+    rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+ul::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+ul::-webkit-scrollbar {
+  width: 5px;
+  background-color: #f5f5f5;
+}
+
+ul::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #a5a5a5;
+}
+
+.grid-row {
+  display: flex;
+  height: 120px;
+  width: 100%;
+}
+
+// Column classes
+
+.grid {
+  width: 100%;
+  border: 1px dashed;
+}
+.grid-col-1 {
+  width: 30%;
+  border: 1px dashed;
+}
+
+.grid-col-2 {
+  width: 70%;
+  border: 1px dashed;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    width: calc(100% - 20px);
+    margin: 10px 0;
+  }
+}
