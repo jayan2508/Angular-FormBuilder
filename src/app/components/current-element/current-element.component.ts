@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
+import { CurrentElementService } from '../../services/cuurent element service/current-element.service';
+import { ComponentService } from '../../services/component service/component.service';
 
 @Component({
   selector: 'app-current-element',
@@ -13,7 +15,11 @@ import { debounceTime } from 'rxjs';
 export class CurrentElementComponent implements OnInit {
   formDesign!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private currentElement: CurrentElementService,
+    private componentService: ComponentService
+  ) {}
 
   ngOnInit(): void {
     this.formDesign = this.formBuilder.group({
@@ -38,7 +44,38 @@ export class CurrentElementComponent implements OnInit {
     }, 0);
   }
 
+  // updateFormDesign(value: any) {
+  //   console.log(value);
+  //   this.currentElement.updateElement(value).subscribe(
+  //     (response) => {
+  //       console.log('Element updated successfully', response);
+  //     },
+  //     (error) => {
+  //       console.error('Error updating element', error);
+  //     }
+  //   );
+  // }
+
   updateFormDesign(value: any) {
-    console.log(value);
+    console.log('current element data',value);
+    this.componentService.getComponents().subscribe(
+      (components) => {
+        const selectedComponent = components.find((comp) => comp.isSelected);
+        if (selectedComponent) {
+          selectedComponent.element = value;
+          this.componentService.updateComponent(selectedComponent).subscribe(
+            (response) => {
+              console.log('Element updated successfully', response);
+            },
+            (error) => {
+              console.error('Error updating element', error);
+            }
+          );
+        }
+      },
+      (error) => {
+        console.error('Error fetching components', error);
+      }
+    );
   }
 }

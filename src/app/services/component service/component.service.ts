@@ -13,7 +13,7 @@ export class ComponentService {
   constructor(private http: HttpClient) {}
 
   getComponents(): Observable<IComponent[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<IComponent[]>(this.apiUrl);
   }
 
   addComponent(component: IComponent): Observable<IComponent> {
@@ -33,19 +33,19 @@ export class ComponentService {
       })
     );
   }
-  
-  // deleteComponent(id: string): Observable<void> {
-  //   const url = `${this.apiUrl}/${id}`;
-  //   return this.http.delete<void>(url).pipe(
-  //     catchError((error) => {
-  //       console.error('Error deleting component:', error);
-  //       return throwError(error);
-  //     })
-  //   );
-  // }
 
-  deleteComponent(id: string): Observable<any> {
-    const url = `http://localhost:3000/components/${id}`; // Replace with your JSON Server URL
-    return this.http.delete<any>(url);
+  deleteComponent(id: string): Observable<void> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<void>(url).pipe(
+      catchError((error) => {
+        console.error('Error deleting component:', error);
+        return throwError(error);
+      })
+    );
   }
+
+  // deleteComponent(id: string): Observable<any> {
+  //   const url = `http://localhost:3000/components/${id}`; // Replace with your JSON Server URL
+  //   return this.http.delete<any>(url);
+  // }
 }

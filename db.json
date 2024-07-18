@@ -51,7 +51,7 @@
     {
       "id": "ee292f69-07a8-4f35-b922-3b4c684b2c23",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": false,
+      "isSelected": true,
       "name": "ACCOUNTANT",
       "icon": "fa-solid fa-house-user",
       "position": {
@@ -59,37 +59,44 @@
         "y": 0.17498779296875
       },
       "gridComponent": [],
-      "element": [],
-      "showDelete": false
+      "element": {
+        "width": 78,
+        "height": 83,
+        "alignment": "flex-start",
+        "background": "#7efb86",
+        "padding": 30,
+        "margin": 83,
+        "font": "Helvetica",
+        "roundedCorners": 93,
+        "border": 18,
+        "borderColor": "#855e7c"
+      },
+      "showDelete": true
     },
     {
       "id": "a0e61ec5-da71-4492-9424-2b83309c0889",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": true,
+      "isSelected": false,
       "name": "Water",
       "icon": "fa-solid fa-faucet-drip",
       "position": {
-        "x": 376.3250427246094,
-        "y": 0
+        "x": 373.7173614501953,
+        "y": 0.399993896484375
       },
       "gridComponent": [],
-      "element": [],
-      "showDelete": true
+      "element": []
     }
   ],
-  "element": [
-    {
-      "width": "100",
-      "height": "100",
-      "alignment": "flex-start",
-      "background": "#ffffff",
-      "padding": "15",
-      "margin": "10",
-      "font": "Arial",
-      "roundedCorners": "5",
-      "border": "2",
-      "borderColor": "#000000",
-      "id": "3552"
-    }
-  ]
+  "element": {
+    "width": 99,
+    "height": 65,
+    "alignment": "center",
+    "background": "#50e3c1",
+    "padding": 6,
+    "margin": 69,
+    "font": "Arial",
+    "roundedCorners": 58,
+    "border": 12,
+    "borderColor": "#85c6e5"
+  }
 }
