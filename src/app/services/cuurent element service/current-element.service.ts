@@ -8,7 +8,7 @@ import { IElement } from '../../utils/interface/tab.interface';
 })
 export class CurrentElementService {
 
-  private apiUrl = 'http://localhost:8000/element';
+  private apiUrl = 'http://localhost:8000/elements';
 
   constructor(private http:HttpClient) { }
 

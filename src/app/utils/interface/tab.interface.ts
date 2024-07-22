@@ -13,7 +13,18 @@ export interface IComponent {
   icon: string;
   position: { x: number; y: number };
   gridComponent:any[],
-  element:any[]
+  element:{
+    width:number;
+    height:number;
+    alignment:string;
+    background:string;
+    padding:number;
+    margin:number;
+    font:string;
+    roundedCorners:number;
+    border:number;
+    borderColor:string;
+  }
 }
 
 export interface IElement{

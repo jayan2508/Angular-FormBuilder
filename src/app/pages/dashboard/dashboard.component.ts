@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ModalComponent } from '../modal/modal.component';
+import { ModalComponent } from '../../model/tab-modal/tab-modal.component';
 import { FormsModule } from '@angular/forms';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -165,7 +165,18 @@ export class DashboardComponent implements OnInit {
           icon: this.getComponentIcon(this.draggedItem.name),
           position: { x: offsetX, y: offsetY },
           gridComponent: [],
-          element: [],
+          element: {
+            width: 100,
+            height: 100,
+            alignment: 'flex-start',
+            background: '#ffffff',
+            padding: 15,
+            margin: 10,
+            font: 'Arial',
+            roundedCorners: 5,
+            border: 2,
+            borderColor: '#000000',
+          },
         };
 
         this.componentService.addComponent(newComponent).subscribe(
@@ -207,7 +218,18 @@ export class DashboardComponent implements OnInit {
         icon: 'icon-placeholder', // Placeholder icon for layout
         position: { x: offsetX, y: offsetY },
         gridComponent: this.getGridComponentCount(this.draggedLayout),
-        element: [],
+        element: {
+          width: 100,
+          height: 100,
+          alignment: 'flex-start',
+          background: '#ffffff',
+          padding: 15,
+          margin: 10,
+          font: 'Arial',
+          roundedCorners: 5,
+          border: 2,
+          borderColor: '#000000',
+        },
       };
 
       // Add layout to components array and save to JSON Server
@@ -332,7 +354,7 @@ export class DashboardComponent implements OnInit {
             icon: this.getComponentIcon(component.name),
             position: component.position,
             gridComponent: [],
-            element: [],
+            element: component.element,
           }))
           .filter(
             (component) => component.activeTabId === this.getActiveTabId()

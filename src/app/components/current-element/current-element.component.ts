@@ -42,22 +42,22 @@ formValue: any;
         .pipe(debounceTime(1000))
         .subscribe((value) => {
           this.updateFormDesign(value);
-          this.updateFormDesign2(value);
+          // this.updateFormDesign2(value);
         });
     }, 0);
   }
 
-  updateFormDesign2(value: any) {
-    console.log(value);
-    this.currentElement.updateElement(value).subscribe(
-      (response) => {
-        console.log('Element updated successfully', response);
-      },
-      (error) => {
-        console.error('Error updating element', error);
-      }
-    );
-  }
+  // updateFormDesign2(value: any) {
+  //   console.log(value);
+  //   this.currentElement.updateElement(value).subscribe(
+  //     (response) => {
+  //       console.log('Element updated successfully', response);
+  //     },
+  //     (error) => {
+  //       console.error('Error updating element', error);
+  //     }
+  //   );
+  // }
 
   updateFormDesign(value: any) {
     console.log('current element data', value);

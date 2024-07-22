@@ -21,95 +21,91 @@
   ],
   "components": [
     {
-      "id": "b1d0e2dc-65ed-4ea4-8dd0-fe8233407282",
+      "id": "07967ab2-04b6-45c3-b4cc-18fa93acded7",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": false,
+      "isSelected": true,
       "name": "HR",
       "icon": "fa-solid fa-house-user",
       "position": {
         "x": 0.32501220703125,
-        "y": 1.1875
+        "y": 0.1875
       },
       "gridComponent": [],
-      "element": [],
-      "showDelete": false
+      "element": {
+        "width": 77,
+        "height": 85,
+        "alignment": "flex-end",
+        "background": "#6f5b02",
+        "padding": 89,
+        "margin": 59,
+        "font": "Arial",
+        "roundedCorners": 35,
+        "border": 9,
+        "borderColor": "#2d0c5e"
+      },
+      "showDelete": true
     },
     {
-      "id": "9a63ba00-1cd9-400d-b881-97c1a44fdb88",
+      "id": "bea4bb19-5df3-42a6-8227-df769cbfd219",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
       "isSelected": false,
       "name": "PM",
       "icon": "fa-solid fa-house-user",
       "position": {
-        "x": 122.92501831054688,
-        "y": -0.0250091552734375
-      },
-      "gridComponent": [],
-      "element": [],
-      "showDelete": false
-    },
-    {
-      "id": "ee292f69-07a8-4f35-b922-3b4c684b2c23",
-      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": false,
-      "name": "ACCOUNTANT",
-      "icon": "fa-solid fa-house-user",
-      "position": {
-        "x": 245.92501831054688,
-        "y": 0.17498779296875
-      },
-      "gridComponent": [],
-      "element": []
-    },
-    {
-      "id": "a0e61ec5-da71-4492-9424-2b83309c0889",
-      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": true,
-      "name": "Water",
-      "icon": "fa-solid fa-faucet-drip",
-      "position": {
-        "x": 365.3125305175781,
-        "y": -0.2125091552734375
+        "x": 120.9625244140625,
+        "y": 0.0625
       },
       "gridComponent": [],
       "element": {
-        "width": 12,
-        "height": 80,
-        "alignment": "flex-start",
-        "background": "#eb557f",
-        "padding": 43,
-        "margin": 55,
+        "width": 51,
+        "height": 20,
+        "alignment": "center",
+        "background": "#1ece73",
+        "padding": 36,
+        "margin": 100,
         "font": "Arial",
-        "roundedCorners": 76,
-        "border": 6,
-        "borderColor": "#727279"
+        "roundedCorners": 53,
+        "border": 63,
+        "borderColor": "#82a630"
       },
-      "showDelete": true
+      "showDelete": false
     },
     {
-      "id": "60126ea7-02c1-4da6-ba08-07e49a573e76",
-      "activeTabId": "f1778c64-94b7-438d-9855-c03ba9a08cd9",
+      "id": "cfdae5e8-8031-44bb-a615-7c0d81866f14",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
       "isSelected": false,
-      "name": "ACCOUNTANT",
+      "name": "MD",
       "icon": "fa-solid fa-house-user",
       "position": {
-        "x": 62.72499084472656,
-        "y": 108.59999084472656
+        "x": 243.32501220703125,
+        "y": 0.3874969482421875
       },
       "gridComponent": [],
-      "element": []
+      "element": {
+        "width": 54,
+        "height": 7,
+        "alignment": "center",
+        "background": "#282c7f",
+        "padding": 28,
+        "margin": 8,
+        "font": "Verdana",
+        "roundedCorners": 34,
+        "border": 94,
+        "borderColor": "#690029"
+      },
+      "showDelete": false
     }
   ],
-  "element": {
-    "width": 12,
-    "height": 80,
-    "alignment": "flex-start",
-    "background": "#eb557f",
-    "padding": 43,
-    "margin": 55,
-    "font": "Arial",
-    "roundedCorners": 76,
-    "border": 6,
-    "borderColor": "#727279"
+  "elements": {
+    "width": 27,
+    "height": 34,
+    "alignment": "center",
+    "background": "#ac7166",
+    "padding": 97,
+    "margin": 70,
+    "font": "Helvetica",
+    "roundedCorners": 56,
+    "border": 17,
+    "borderColor": "#df4ce6"
   }
 }

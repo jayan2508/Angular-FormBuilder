@@ -7,8 +7,8 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-modal',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.scss']
+  templateUrl: './tab-modal.component.html',
+  styleUrls: ['./tab-modal.component.scss']
 })
 export class ModalComponent {
   title: string = '';
