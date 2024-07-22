@@ -15,3 +15,16 @@ export interface IComponent {
   gridComponent:any[],
   element:any[]
 }
+
+export interface IElement{
+  width:number;
+  height:number;
+  alignment:string;
+  background:string;
+  padding:number;
+  margin:number;
+  font:string;
+  roundedCorners:number;
+  border:number;
+  borderColor:string;
+}

@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { CurrentElementService } from '../../services/cuurent element service/current-element.service';
 import { ComponentService } from '../../services/component service/component.service';
+import { error } from 'console';
 
 @Component({
   selector: 'app-current-element',
@@ -14,6 +15,7 @@ import { ComponentService } from '../../services/component service/component.ser
 })
 export class CurrentElementComponent implements OnInit {
   formDesign!: FormGroup;
+formValue: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,24 +42,25 @@ export class CurrentElementComponent implements OnInit {
         .pipe(debounceTime(1000))
         .subscribe((value) => {
           this.updateFormDesign(value);
+          this.updateFormDesign2(value);
         });
     }, 0);
   }
 
-  // updateFormDesign(value: any) {
-  //   console.log(value);
-  //   this.currentElement.updateElement(value).subscribe(
-  //     (response) => {
-  //       console.log('Element updated successfully', response);
-  //     },
-  //     (error) => {
-  //       console.error('Error updating element', error);
-  //     }
-  //   );
-  // }
+  updateFormDesign2(value: any) {
+    console.log(value);
+    this.currentElement.updateElement(value).subscribe(
+      (response) => {
+        console.log('Element updated successfully', response);
+      },
+      (error) => {
+        console.error('Error updating element', error);
+      }
+    );
+  }
 
   updateFormDesign(value: any) {
-    console.log('current element data',value);
+    console.log('current element data', value);
     this.componentService.getComponents().subscribe(
       (components) => {
         const selectedComponent = components.find((comp) => comp.isSelected);

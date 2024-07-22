@@ -51,7 +51,7 @@
     {
       "id": "ee292f69-07a8-4f35-b922-3b4c684b2c23",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": true,
+      "isSelected": false,
       "name": "ACCOUNTANT",
       "icon": "fa-solid fa-house-user",
       "position": {
@@ -59,44 +59,57 @@
         "y": 0.17498779296875
       },
       "gridComponent": [],
-      "element": {
-        "width": 78,
-        "height": 83,
-        "alignment": "flex-start",
-        "background": "#7efb86",
-        "padding": 30,
-        "margin": 83,
-        "font": "Helvetica",
-        "roundedCorners": 93,
-        "border": 18,
-        "borderColor": "#855e7c"
-      },
-      "showDelete": true
+      "element": []
     },
     {
       "id": "a0e61ec5-da71-4492-9424-2b83309c0889",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": false,
+      "isSelected": true,
       "name": "Water",
       "icon": "fa-solid fa-faucet-drip",
       "position": {
-        "x": 373.7173614501953,
-        "y": 0.399993896484375
+        "x": 365.3125305175781,
+        "y": -0.2125091552734375
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 12,
+        "height": 80,
+        "alignment": "flex-start",
+        "background": "#eb557f",
+        "padding": 43,
+        "margin": 55,
+        "font": "Arial",
+        "roundedCorners": 76,
+        "border": 6,
+        "borderColor": "#727279"
+      },
+      "showDelete": true
+    },
+    {
+      "id": "60126ea7-02c1-4da6-ba08-07e49a573e76",
+      "activeTabId": "f1778c64-94b7-438d-9855-c03ba9a08cd9",
+      "isSelected": false,
+      "name": "ACCOUNTANT",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 62.72499084472656,
+        "y": 108.59999084472656
       },
       "gridComponent": [],
       "element": []
     }
   ],
   "element": {
-    "width": 99,
-    "height": 65,
-    "alignment": "center",
-    "background": "#50e3c1",
-    "padding": 6,
-    "margin": 69,
+    "width": 12,
+    "height": 80,
+    "alignment": "flex-start",
+    "background": "#eb557f",
+    "padding": 43,
+    "margin": 55,
     "font": "Arial",
-    "roundedCorners": 58,
-    "border": 12,
-    "borderColor": "#85c6e5"
+    "roundedCorners": 76,
+    "border": 6,
+    "borderColor": "#727279"
   }
 }

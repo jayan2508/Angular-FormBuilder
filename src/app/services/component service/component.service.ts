@@ -24,6 +24,7 @@ export class ComponentService {
       })
     );
   }
+  
   updateComponent(component: IComponent): Observable<IComponent> {
     const url = `${this.apiUrl}/${component.id}`;
     return this.http.put<IComponent>(url, component).pipe(
