@@ -5,6 +5,7 @@ import { debounceTime } from 'rxjs';
 import { CurrentElementService } from '../../services/cuurent element service/current-element.service';
 import { ComponentService } from '../../services/component service/component.service';
 import { error } from 'console';
+import { DashboardComponent } from '../../pages/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-current-element',
@@ -15,12 +16,13 @@ import { error } from 'console';
 })
 export class CurrentElementComponent implements OnInit {
   formDesign!: FormGroup;
-formValue: any;
+  formValue: any;
 
   constructor(
     private formBuilder: FormBuilder,
     private currentElement: CurrentElementService,
-    private componentService: ComponentService
+    private componentService: ComponentService,
+    private DashboardComponent: DashboardComponent,
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +39,8 @@ formValue: any;
       borderColor: ['#000000', Validators.required],
     });
 
+    this.loadSelectedComponent();
+
     setTimeout(() => {
       this.formDesign.valueChanges
         .pipe(debounceTime(1000))
@@ -45,6 +49,28 @@ formValue: any;
           // this.updateFormDesign2(value);
         });
     }, 0);
+
+
+    // Subscribe to currentElement changes
+    this.currentElement.currentElement$.subscribe((element) => {
+      if (element) {
+        this.formDesign.patchValue(element.element, { emitEvent: false });
+      }
+    });
+  }
+
+  loadSelectedComponent(): void {
+    this.componentService.getComponents().subscribe(
+      (components) => {
+        const selectedComponent = components.find((comp) => comp.isSelected);
+        if (selectedComponent) {
+          this.formDesign.patchValue(selectedComponent.element);
+        }
+      },
+      (error) => {
+        console.error('Error fetching components', error);
+      }
+    );
   }
 
   // updateFormDesign2(value: any) {
@@ -69,6 +95,7 @@ formValue: any;
           this.componentService.updateComponent(selectedComponent).subscribe(
             (response) => {
               console.log('Element updated successfully', response);
+              this.DashboardComponent.loadComponents()
             },
             (error) => {
               console.error('Error updating element', error);

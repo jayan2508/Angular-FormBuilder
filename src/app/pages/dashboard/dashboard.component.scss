@@ -610,3 +610,29 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    .sidebar {
+      width: 90% !important;
+      padding: 10px;
+    }
+    .main {
+      display: flex;
+      justify-content: center;
+      width: 100% !important;
+      .drop-container {
+        width: 90% !important;
+      }
+    }
+  }
+
+  .layout-option img {
+    width: 70px;
+    height: 70px;
+  }
+}

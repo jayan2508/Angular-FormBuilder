@@ -21,91 +21,64 @@
   ],
   "components": [
     {
-      "id": "07967ab2-04b6-45c3-b4cc-18fa93acded7",
-      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": true,
-      "name": "HR",
-      "icon": "fa-solid fa-house-user",
-      "position": {
-        "x": 0.32501220703125,
-        "y": 0.1875
-      },
-      "gridComponent": [],
-      "element": {
-        "width": 77,
-        "height": 85,
-        "alignment": "flex-end",
-        "background": "#6f5b02",
-        "padding": 89,
-        "margin": 59,
-        "font": "Arial",
-        "roundedCorners": 35,
-        "border": 9,
-        "borderColor": "#2d0c5e"
-      },
-      "showDelete": true
-    },
-    {
-      "id": "bea4bb19-5df3-42a6-8227-df769cbfd219",
+      "id": "e32c4a2e-5a10-48aa-ae23-3e87a93d05a3",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
       "isSelected": false,
+      "name": "HR",
+      "icon": "fa-solid fa-house-user",
+      "position": "translate3d(34.42500305175781px, 39.59999084472656px, 0)",
+      "gridComponent": [],
+      "element": {
+        "width": 110,
+        "height": 40,
+        "alignment": "center",
+        "background": "#83790f",
+        "padding": 2,
+        "margin": 3,
+        "font": "Verdana",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#0591a1"
+      },
+      "showDelete": false
+    },
+    {
+      "id": "0952333c-aa29-4530-8dcb-cbd2df9db11b",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": true,
       "name": "PM",
       "icon": "fa-solid fa-house-user",
       "position": {
-        "x": 120.9625244140625,
-        "y": 0.0625
+        "x": 115.32501220703125,
+        "y": -0.01251220703125
       },
       "gridComponent": [],
       "element": {
-        "width": 51,
-        "height": 20,
+        "width": 90,
+        "height": 50,
         "alignment": "center",
-        "background": "#1ece73",
-        "padding": 36,
-        "margin": 100,
+        "background": "#8c9c9b",
+        "padding": 21,
+        "margin": 2,
         "font": "Arial",
-        "roundedCorners": 53,
-        "border": 63,
-        "borderColor": "#82a630"
+        "roundedCorners": 0,
+        "border": 2,
+        "borderColor": "#9d68ce"
       },
-      "showDelete": false
-    },
-    {
-      "id": "cfdae5e8-8031-44bb-a615-7c0d81866f14",
-      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": false,
-      "name": "MD",
-      "icon": "fa-solid fa-house-user",
-      "position": {
-        "x": 243.32501220703125,
-        "y": 0.3874969482421875
-      },
-      "gridComponent": [],
-      "element": {
-        "width": 54,
-        "height": 7,
-        "alignment": "center",
-        "background": "#282c7f",
-        "padding": 28,
-        "margin": 8,
-        "font": "Verdana",
-        "roundedCorners": 34,
-        "border": 94,
-        "borderColor": "#690029"
-      },
-      "showDelete": false
+      "showDelete": true
     }
   ],
   "elements": {
-    "width": 27,
-    "height": 34,
-    "alignment": "center",
-    "background": "#ac7166",
-    "padding": 97,
-    "margin": 70,
-    "font": "Helvetica",
-    "roundedCorners": 56,
-    "border": 17,
-    "borderColor": "#df4ce6"
+    "width": 77,
+    "height": 85,
+    "alignment": "flex-end",
+    "background": "#6f5b02",
+    "padding": 89,
+    "margin": 59,
+    "font": "Arial",
+    "roundedCorners": 35,
+    "border": 9,
+    "borderColor": "#2d0c5e",
+    "showComponent": true
   }
 }

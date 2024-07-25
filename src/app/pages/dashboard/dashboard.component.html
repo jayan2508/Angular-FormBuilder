@@ -117,14 +117,23 @@
     <div class="main">
         <div class="drop-container example-boundary" (drop)="onDrop($event)" (dragover)="allowDrop($event)">
             <div class="component-box" *ngFor="let component of components; let i = index"
-                [style.left.px]="component.position.x" [style.top.px]="component.position.y" draggable="true" 
-                cdkDragBoundary=".example-boundary" cdkDrag [cdkDragData]="component"
-                (cdkDragEnded)="onDragEnded($event)" [hidden]="component.activeTabId !== getActiveTabId()"
-                [class.active]="component.isSelected"
-                 (mouseenter)="showDeleteButton(i)" (mouseleave)="hideDeleteButton(i)" (click)="showComponentLog(i)">
+                [style.left.px]="component.position.x" [style.top.px]="component.position.y" draggable="true" [ngStyle]="{
+                'width': component.element.width + 'px', 
+                'height': component.element.height+ 'px',
+                'align-items': component.element.alignment,
+                'background': component.element.background,
+                'padding': component.element.padding + 'px',
+                'margin': component.element.margin + 'px',
+                'font-family': component.element.font,
+                'border': component.element.border + 'px solid ' + component.element.borderColor,
+                'border-radius': component.element.roundedCorners + 'px'}" cdkDragBoundary=".example-boundary" cdkDrag
+                [cdkDragData]="component" (cdkDragEnded)="onDragEnded($event)"
+                [hidden]="component.activeTabId !== getActiveTabId()" [class.active]="component.isSelected"
+                (mouseenter)="showDeleteButton(i)" (mouseleave)="hideDeleteButton(i)" (click)="showComponentLog(i)">
                 <i [class]="component.icon"></i>
                 <span>{{ component.name }}</span>
-                <button class="delete-btn" (click)="showDeleteConfirmationModal(i)" [hidden]="!component.showDelete"><i class="fa-solid fa-trash"></i></button>
+                <button class="delete-btn" (click)="showDeleteConfirmationModal(i)" [hidden]="!component.showDelete"><i
+                        class="fa-solid fa-trash"></i></button>
             </div>
         </div>
     </div>
@@ -135,9 +144,8 @@
     </div>
 </div>
 
-<app-confirm-modal *ngIf="showDeleteModal"
-(deleteConfirmed)="deleteConfirmed($event)"
-(modalClosed)="closeDeleteConfirmationModal()"></app-confirm-modal>
+<app-confirm-modal *ngIf="showDeleteModal" (deleteConfirmed)="deleteConfirmed($event)"
+    (modalClosed)="closeDeleteConfirmationModal()"></app-confirm-modal>
 
 <div *ngIf="showSectionModal" class="modal-content">
     <div class="model-header">

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, Injectable, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../model/tab-modal/tab-modal.component';
 import { FormsModule } from '@angular/forms';
@@ -29,6 +29,11 @@ import { Observable } from 'rxjs';
 import { ComponentService } from '../../services/component service/component.service';
 import { CurrentElementComponent } from '../../components/current-element/current-element.component';
 import { ConfirmModalComponent } from '../../model/confirm-modal/confirm-modal.component';
+import { CurrentElementService } from '../../services/cuurent element service/current-element.service';
+
+@Injectable({
+  providedIn: 'root'
+})
 
 @Component({
   selector: 'app-dashboard',
@@ -93,7 +98,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private tabService: TabService,
     private toastrService: ToastrService,
-    private componentService: ComponentService
+    private componentService: ComponentService,
+    private currentElement: CurrentElementService,
   ) {}
 
   ngOnInit(): void {
@@ -194,13 +200,6 @@ export class DashboardComponent implements OnInit {
 
       this.draggedItem = null; // Reset dragged item
     }
-    // if (this.draggedLayout) {
-    //   const formContainer = document.querySelector(
-    //     '.drop-container'
-    //   ) as HTMLElement;
-    //   this.createLayout(this.draggedLayout, formContainer);
-    //   this.toastrService.success('Layout created successfully!');
-    // }
     if (this.draggedLayout) {
       const formContainer = document.querySelector(
         '.drop-container'
@@ -246,48 +245,6 @@ export class DashboardComponent implements OnInit {
     this.draggedLayout = null;
     this.showSectionModal = false;
   }
-  // createLayout(layout: string, formContainer: HTMLElement): void {
-  //   switch (layout) {
-  //     case 'col2':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid"></div><div class="grid"></div></div>'
-  //       );
-  //       break;
-  //     case 'col3':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid"></div><div class="grid"></div><div class="grid"></div></div>'
-  //       );
-  //       break;
-  //     case 'col4':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid"></div><div class="grid"></div><div class="grid"></div><div class="grid"></div></div>'
-  //       );
-  //       break;
-  //     case 'col5':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid"></div><div class="grid"></div><div class="grid"></div><div class="grid"></div><div class="grid"></div></div>'
-  //       );
-  //       break;
-  //     case 'col2-1-3':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid-col-1"></div><div class="grid-col-2"></div></div>'
-  //       );
-  //       break;
-  //     case 'col2-3-1':
-  //       formContainer.insertAdjacentHTML(
-  //         'beforeend',
-  //         '<div class="grid-row"><div class="grid-col-2"></div><div class="grid-col-1"></div></div>'
-  //       );
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // }
   createLayout(layout: string, formContainer: HTMLElement): void {
     const gridRow = document.createElement('div');
     gridRow.classList.add('grid-row');
@@ -598,7 +555,9 @@ export class DashboardComponent implements OnInit {
       if (comp.id !== component.id && comp.isSelected) {
         comp.isSelected = false;
         this.componentService.updateComponent(comp).subscribe(
-          () => {},
+          () => {
+            this.currentElement.setCurrentElement(component);
+          },
           (error) => {
             console.error('Failed to update component:', error);
           }
@@ -608,7 +567,9 @@ export class DashboardComponent implements OnInit {
     component.isSelected = true;
 
     this.componentService.updateComponent(component).subscribe(
-      () => {},
+      () => {
+        this.currentElement.setCurrentElement(component);
+      },
       (error) => {
         console.error('Failed to update component:', error);
       }
