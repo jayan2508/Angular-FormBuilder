@@ -20,120 +20,164 @@
         <div *ngFor="let tab of tabs" [hidden]="!tab.active">
             {{ tab.title }}
         </div>
-        <button (click)="generatePDF()">Generate PDF</button>
+        <div>
+            <button (click)="generateJsonModal()" class="preview-btn">Generate JSON <i
+                    class="fa-solid fa-code"></i></button>
+            <button (click)="generatePDF()">Download PDF <i class="fa-solid fa-file-pdf"></i></button>
+        </div>
     </div>
 </div>
+
+<app-generate-json-modal *ngIf="isModalOpen" (closeModal)="isModalOpen = false"></app-generate-json-modal>
 
 <app-modal *ngIf="showModal" (save)="addTab($event)" (close)="closeModal()"></app-modal>
 
 <div class="main-container">
     <div class="sidebar">
-        <h2>SECTION <i class="fa-solid fa-table-columns"></i></h2>
-        <div class="element-container">
-            <div class="component">
-                <div class="content employee-content" (click)="openSectionModal()">
-                    <i class="fa-solid fa-grip"></i>
-                    <span>Section</span>
+        <!-- <div class="field-section">
+            <button (click)="fieldSection(1)" [ngClass]="{'field': field==='Field'}">Field</button>
+            <button (click)="fieldSection(2)" [ngClass]="{'field': field==='Workflow'}">Workflow</button>
+        </div> -->
+        <input type="search" class="search-bar" placeholder="Search" [(ngModel)]="filterText">
+
+        <!-- Start of content sections -->
+        <ng-container *ngIf="isAnySectionVisible()">
+            <div *ngIf="filterText === '' || 'SECTION'.toLowerCase().includes(filterText.toLowerCase())">
+                <h2>SECTION <i class="fa-solid fa-table-columns"></i></h2>
+                <div class="element-container">
+                    <div class="component">
+                        <div class="content employee-content" (click)="openSectionModal()">
+                            <i class="fa-solid fa-grip"></i>
+                            <span>Section</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h2>CABIN <i class="fa-solid fa-house-laptop"></i></h2>
-        <div class="element-container">
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'HR')">
-                <div>
-                    <i class="fa-solid fa-house-user"></i>
-                    <span>HR</span>
+
+            <div *ngIf="filterText === '' || 'CABIN'.toLowerCase().includes(filterText.toLowerCase())">
+                <h2>CABIN <i class="fa-solid fa-house-laptop"></i></h2>
+                <div class="element-container">
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'HR')">
+                        <div>
+                            <i class="fa-solid fa-house-user"></i>
+                            <span>HR</span>
+                        </div>
+                    </div>
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'PM')">
+                        <div>
+                            <i class="fa-solid fa-house-user"></i>
+                            <span>PM</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="element-container">
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'MD')">
+                        <div>
+                            <i class="fa-solid fa-house-user"></i>
+                            <span>MD</span>
+                        </div>
+                    </div>
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'ACCOUNTANT')">
+                        <div>
+                            <i class="fa-solid fa-house-user"></i>
+                            <span>ACCOUNTANT</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'PM')">
-                <div>
-                    <i class="fa-solid fa-house-user"></i>
-                    <span>PM</span>
+
+            <div *ngIf="filterText === '' || 'PANTRY AREA'.toLowerCase().includes(filterText.toLowerCase())">
+                <h2>PANTRY AREA <i class="fa-solid fa-kitchen-set"></i></h2>
+                <div class="element-container">
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Water')">
+                        <div>
+                            <i class="fa-solid fa-faucet-drip"></i>
+                            <span>Water</span>
+                        </div>
+                    </div>
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Washroom')">
+                        <div>
+                            <i class="fa-solid fa-sink"></i>
+                            <span>Washroom</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="element-container">
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'MD')">
-                <div>
-                    <i class="fa-solid fa-house-user"></i>
-                    <span>MD</span>
+
+            <div *ngIf="filterText === '' || 'EMPLOYEE'.toLowerCase().includes(filterText.toLowerCase())">
+                <h2>EMPLOYEE <i class="fa-solid fa-users-line"></i></h2>
+                <div class="element-container">
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Employee')">
+                        <div class="employee-content">
+                            <i class="fa-solid fa-user-tie"></i>
+                            <span>Employee</span>
+                        </div>
+                    </div>
+                    <div class="component">
+                        <div class="employee-content" (click)="showEmployeeList()">
+                            <i class="fa-solid fa-list-check"></i>
+                            <span>List</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-component">
+                    <div *ngIf="showEmployees">
+                        <h3>Employee List</h3>
+                        <ul cdkDropList (cdkDropListDropped)="dropList($event)">
+                            <li *ngFor="let employee of employees" cdkDrag>{{ employee }}</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'ACCOUNTANT')">
-                <div>
-                    <i class="fa-solid fa-house-user"></i>
-                    <span>ACCOUNTANT</span>
+
+            <div *ngIf="filterText === '' || 'AREA'.toLowerCase().includes(filterText.toLowerCase())">
+                <h2>AREA <i class="fa-solid fa-people-roof"></i></h2>
+                <div class="element-container">
+                    <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Meeting Area')">
+                        <div class="content">
+                            <i class="fa-solid fa-handshake"></i>
+                            <span>Meeting Area</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <h2>PANTRY AREA <i class="fa-solid fa-kitchen-set"></i></h2>
-        <div class="element-container">
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Water')">
-                <div>
-                    <i class="fa-solid fa-faucet-drip"></i>
-                    <span>Water</span>
-                </div>
-            </div>
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Washroom')">
-                <div>
-                    <i class="fa-solid fa-sink"></i>
-                    <span>Washroom</span>
-                </div>
-            </div>
-        </div>
-        <h2>EMPLOYEE <i class="fa-solid fa-users-line"></i></h2>
-        <div class="element-container">
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Employee')">
-                <div class="employee-content">
-                    <i class="fa-solid fa-user-tie"></i>
-                    <span>Employee</span>
-                </div>
-            </div>
-            <div class="component">
-                <div class="employee-content" (click)="showEmployeeList()">
-                    <i class="fa-solid fa-list-check"></i>
-                    <span>List</span>
-                </div>
-            </div>
-        </div>
-        <div class="list-component">
-            <div *ngIf="showEmployees">
-                <h3>Employee List</h3>
-                <ul cdkDropList (cdkDropListDropped)="dropList($event)">
-                    <li *ngFor="let employee of employees" cdkDrag cdkDrag>{{ employee }}</li>
-                </ul>
-            </div>
-        </div>
-        <h2>AREA <i class="fa-solid fa-people-roof"></i></h2>
-        <div class="element-container">
-            <div class="component" draggable="true" (dragstart)="onDragStart($event, 'Meeting Area')">
-                <div class="content">
-                    <i class="fa-solid fa-handshake"></i>
-                    <span>Meeting Area</span>
-                </div>
-            </div>
+        </ng-container>
+
+        <!-- No data found message -->
+        <div class="no-found-message" *ngIf="!isAnySectionVisible()">
+            <i class="fa-solid fa-ban"></i>
+            <p>No data found</p>
         </div>
     </div>
+
     <div class="main">
-        <div class="drop-container example-boundary" (drop)="onDrop($event)" (dragover)="allowDrop($event)">
-            <div class="component-box" *ngFor="let component of components; let i = index"
-                [style.left.px]="component.position.x" [style.top.px]="component.position.y" draggable="true" [ngStyle]="{
+        <div class="drop-main-container example-boundary">
+            <div class="drop-container" (drop)="onDrop($event)" (dragover)="allowDrop($event)">
+                <div class="component-box" *ngFor="let component of components; let i = index"
+                    [style.left.px]="component.position.x" [style.top.px]="component.position.y" draggable="true"
+                    [ngStyle]="{
                 'width': component.element.width + 'px', 
                 'height': component.element.height+ 'px',
                 'align-items': component.element.alignment,
                 'background': component.element.background,
                 'padding': component.element.padding + 'px',
-                'margin': component.element.margin + 'px',
                 'font-family': component.element.font,
                 'border': component.element.border + 'px solid ' + component.element.borderColor,
                 'border-radius': component.element.roundedCorners + 'px'}" cdkDragBoundary=".example-boundary" cdkDrag
-                [cdkDragData]="component" (cdkDragEnded)="onDragEnded($event)"
-                [hidden]="component.activeTabId !== getActiveTabId()" [class.active]="component.isSelected"
-                (mouseenter)="showDeleteButton(i)" (mouseleave)="hideDeleteButton(i)" (click)="showComponentLog(i)">
-                <i [class]="component.icon"></i>
-                <span>{{ component.name }}</span>
-                <button class="delete-btn" (click)="showDeleteConfirmationModal(i)" [hidden]="!component.showDelete"><i
-                        class="fa-solid fa-trash"></i></button>
+                    [cdkDragData]="component" (cdkDragEnded)="onDragEnded($event)"
+                    [hidden]="component.activeTabId !== getActiveTabId()" [class.active]="component.isSelected"
+                    (mouseenter)="showDeleteButton(i)" (mouseleave)="hideDeleteButton(i)" (click)="showComponent(i)">
+                    <i [class]="component.icon"></i>
+                    <span>{{ component.name }}</span>
+                    <div *ngIf="component.gridComponent.length > 0" class="grid-row">
+                        <div *ngFor="let grid of component.gridComponent" [ngClass]="grid.class">
+                            <p>{{ grid.name || '' }}</p>
+                        </div>
+                    </div>
+                    <button class="delete-btn" (click)="showDeleteConfirmationModal(i)"
+                        [hidden]="!component.showDelete"><i class="fa-solid fa-trash"></i></button>
+                </div>
+
             </div>
         </div>
     </div>

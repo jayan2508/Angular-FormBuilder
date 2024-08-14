@@ -9,63 +9,229 @@
     {
       "id": "d72e81ef-3682-4122-8d53-5e9933677c74",
       "title": "Jay Shree 2",
-      "active": true,
+      "active": false,
       "added_components": []
     },
     {
       "id": "f1778c64-94b7-438d-9855-c03ba9a08cd9",
       "title": "Nimavi 4",
-      "active": false,
+      "active": true,
       "added_components": []
     }
   ],
   "components": [
     {
-      "id": "e32c4a2e-5a10-48aa-ae23-3e87a93d05a3",
+      "id": "5fee2c77-5bc4-4950-9803-1074e73eab41",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
       "isSelected": false,
-      "name": "HR",
-      "icon": "fa-solid fa-house-user",
-      "position": "translate3d(34.42500305175781px, 39.59999084472656px, 0)",
+      "name": "Water",
+      "icon": "fa-solid fa-faucet-drip",
+      "position": {
+        "x": 0.649993896484375,
+        "y": 1
+      },
       "gridComponent": [],
       "element": {
-        "width": 110,
-        "height": 40,
+        "width": 70,
+        "height": 480,
         "alignment": "center",
-        "background": "#83790f",
-        "padding": 2,
-        "margin": 3,
-        "font": "Verdana",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
         "roundedCorners": 5,
         "border": 2,
-        "borderColor": "#0591a1"
+        "borderColor": "#000000"
+      }
+    },
+    {
+      "id": "df2c7399-6320-48ab-97fc-def5cf6aecb5",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "Meeting Area",
+      "icon": "fa-solid fa-handshake",
+      "position": {
+        "x": 414.6500244140625,
+        "y": 378.97503662109375
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 200,
+        "height": 100,
+        "alignment": "flex-end",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
+      }
+    },
+    {
+      "id": "d2d069e8-e616-44ff-8291-26075459f280",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "Washroom",
+      "icon": "fa-solid fa-sink",
+      "position": {
+        "x": 535.6500244140625,
+        "y": 288
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 70,
+        "height": 50,
+        "alignment": "flex-end",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
       },
       "showDelete": false
     },
     {
-      "id": "0952333c-aa29-4530-8dcb-cbd2df9db11b",
+      "id": "238a0ddb-d23a-492a-bbe6-0c6d1ca5c46a",
       "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
-      "isSelected": true,
-      "name": "PM",
-      "icon": "fa-solid fa-house-user",
+      "isSelected": false,
+      "name": "Washroom",
+      "icon": "fa-solid fa-sink",
       "position": {
-        "x": 115.32501220703125,
-        "y": -0.01251220703125
+        "x": 426.6500244140625,
+        "y": 289
       },
       "gridComponent": [],
       "element": {
-        "width": 90,
+        "width": 70,
         "height": 50,
-        "alignment": "center",
-        "background": "#8c9c9b",
-        "padding": 21,
-        "margin": 2,
+        "alignment": "flex-end",
+        "background": "#ffffff",
+        "padding": 15,
         "font": "Arial",
-        "roundedCorners": 0,
+        "roundedCorners": 5,
         "border": 2,
-        "borderColor": "#9d68ce"
+        "borderColor": "#000000"
+      },
+      "showDelete": false
+    },
+    {
+      "id": "860747ad-a8a2-4779-8be7-3cbe917a5336",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": true,
+      "name": "HR",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 423.3233642578125,
+        "y": 97.63751220703125
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 70,
+        "height": 50,
+        "alignment": "flex-start",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
+      },
+      "showDelete": false
+    },
+    {
+      "id": "ab181d74-ba8c-4a14-ab08-252ca4225edb",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "PM",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 537.5875244140625,
+        "y": 98.38751220703125
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 70,
+        "height": 50,
+        "alignment": "flex-start",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
+      }
+    },
+    {
+      "id": "91b1f4e0-4d4d-4c5d-a462-3e107c101680",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "ACCOUNTANT",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 415.6499938964844,
+        "y": 7
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 200,
+        "height": 50,
+        "alignment": "flex-start",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
+      },
+      "showDelete": false
+    },
+    {
+      "id": "87aac0e3-e8c9-4a6c-abc5-fb8072bef81d",
+      "activeTabId": "d72e81ef-3682-4122-8d53-5e9933677c74",
+      "isSelected": false,
+      "name": "MD",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": 415.32501220703125,
+        "y": 194.20001220703125
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 200,
+        "height": 50,
+        "alignment": "flex-start",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
       },
       "showDelete": true
+    },
+    {
+      "id": "ada046b8-b638-4521-a30d-74f8e16f1197",
+      "activeTabId": "f1778c64-94b7-438d-9855-c03ba9a08cd9",
+      "isSelected": true,
+      "name": "HR",
+      "icon": "fa-solid fa-house-user",
+      "position": {
+        "x": -2.024993896484375,
+        "y": -2
+      },
+      "gridComponent": [],
+      "element": {
+        "width": 50,
+        "height": 100,
+        "alignment": "flex-start",
+        "background": "#ffffff",
+        "padding": 15,
+        "font": "Arial",
+        "roundedCorners": 5,
+        "border": 2,
+        "borderColor": "#000000"
+      },
+      "showDelete": false
     }
   ],
   "elements": {

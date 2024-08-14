@@ -14,15 +14,15 @@ export interface IComponent {
   position: { x: number; y: number };
   gridComponent:any[],
   element:{
-    width:number;
-    height:number;
+    width:number | string;
+    height:number | string;
     alignment:string;
     background:string;
-    padding:number;
-    margin:number;
+    padding:number | string;
+    // margin:number;
     font:string;
-    roundedCorners:number;
-    border:number;
+    roundedCorners:number | string;
+    border:number | string;
     borderColor:string;
   }
 }

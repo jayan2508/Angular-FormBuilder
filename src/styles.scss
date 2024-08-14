@@ -65,7 +65,7 @@ p {
 }
 
 .tab.active {
-  background-color: #30393d;
+  background-color: #464e51;
   border-radius: 5px;
 }
 
@@ -120,6 +120,10 @@ p {
   padding: 10px;
   color: white;
   cursor: pointer;
+  margin: 0px 0px 0px 10px;
+}
+.preview-btn{
+  background: linear-gradient(135deg, #0273d4 , #0143a3) !important;
 }
 
 .list-component h3 {

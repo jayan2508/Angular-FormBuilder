@@ -32,7 +32,7 @@ export class CurrentElementComponent implements OnInit {
       alignment: ['flex-start', Validators.required],
       background: ['#ffffff', Validators.required],
       padding: [15, Validators.required],
-      margin: [10, Validators.required],
+      // margin: [10, Validators.required],
       font: ['Arial', Validators.required],
       roundedCorners: [5, Validators.required],
       border: [2, Validators.required],

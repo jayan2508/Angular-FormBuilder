@@ -1,4 +1,10 @@
-import { Component, Injectable, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  Injectable,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from '../../model/tab-modal/tab-modal.component';
 import { FormsModule } from '@angular/forms';
@@ -30,11 +36,11 @@ import { ComponentService } from '../../services/component service/component.ser
 import { CurrentElementComponent } from '../../components/current-element/current-element.component';
 import { ConfirmModalComponent } from '../../model/confirm-modal/confirm-modal.component';
 import { CurrentElementService } from '../../services/cuurent element service/current-element.service';
+import { GenerateJsonModalComponent } from '../../model/generate-json-modal/generate-json-modal/generate-json-modal.component';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -51,6 +57,7 @@ import { CurrentElementService } from '../../services/cuurent element service/cu
     DiagramModule,
     CurrentElementComponent,
     ConfirmModalComponent,
+    GenerateJsonModalComponent,
   ],
 })
 export class DashboardComponent implements OnInit {
@@ -74,6 +81,13 @@ export class DashboardComponent implements OnInit {
   components: any[] = [];
   showDeleteModal = false;
   componentToDeleteIndex: number | null = null;
+  filterText: string = '';
+  // field: string = 'Field';
+  isModalOpen = false;
+
+  generateJsonModal(): void {
+    this.isModalOpen = true;
+  }
 
   // @ViewChild('diagram')
   // public diagram?: DiagramComponent;
@@ -91,6 +105,7 @@ export class DashboardComponent implements OnInit {
   //   (node.style as TextStyleModel).textAlign = 'Center';
   //   return node;
   // }
+
   dropList(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.employees, event.previousIndex, event.currentIndex);
   }
@@ -99,7 +114,7 @@ export class DashboardComponent implements OnInit {
     private tabService: TabService,
     private toastrService: ToastrService,
     private componentService: ComponentService,
-    private currentElement: CurrentElementService,
+    private currentElement: CurrentElementService
   ) {}
 
   ngOnInit(): void {
@@ -107,33 +122,87 @@ export class DashboardComponent implements OnInit {
     this.loadComponents();
   }
 
+  // fieldSection(check: number) {
+  //   if (check == 1) {
+  //     this.field = 'Field';
+  //   }
+  //   //  else if (check == 2) {
+  //   //   this.field = 'Workflow';
+  //   // }
+  //   else {
+  //     this.field = 'Workflow';
+  //   }
+  // }
+
+  isAnySectionVisible(): boolean {
+    const sections = ['SECTION', 'CABIN', 'PANTRY AREA', 'EMPLOYEE', 'AREA'];
+    return sections.some((section) =>
+      section.toLowerCase().includes(this.filterText.toLowerCase())
+    );
+  }
+
   generatePDF() {
-    const formContainer = document.querySelector('.drop-container');
-    if (formContainer) {
-      html2canvas(formContainer as HTMLElement).then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const imgWidth = 210; // A4 width in mm
-        const pageHeight = 297; // A4 height in mm
-        const imgHeight = (canvas.height * imgWidth) / canvas.width;
-        let heightLeft = imgHeight;
+    const element = document.querySelector('.drop-container');
 
-        const doc = new jsPDF('p', 'mm', 'a4');
-        let position = 0;
+    if (element) {
+      html2canvas(element as HTMLElement, { scrollY: -window.scrollY }).then(
+        (canvas) => {
+          const imgData = canvas.toDataURL('image/png');
+          const pdf = new jsPDF('p', 'mm', 'a4');
 
-        doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = pdf.internal.pageSize.getHeight();
+          const imgWidth = pdfWidth - 20;
+          const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-        while (heightLeft >= 0) {
-          position = heightLeft - imgHeight;
-          doc.addPage();
-          doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
-          heightLeft -= pageHeight;
+          let heightLeft = imgHeight;
+          let position = 0;
+
+          pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+          heightLeft -= pdfHeight - 10;
+
+          while (heightLeft > 0) {
+            position = heightLeft - imgHeight;
+            pdf.addPage();
+            pdf.addImage(imgData, 'PNG', 10, position, imgWidth, imgHeight);
+            heightLeft -= pdfHeight;
+          }
+
+          pdf.save('table-data.pdf');
         }
-
-        doc.save('Form_Builder.pdf');
-      });
+      );
+    } else {
+      console.error('Element not found');
     }
   }
+
+  // generatePDF() {
+  //   const formContainer = document.querySelector('.drop-main-container');
+  //   if (formContainer) {
+  //     html2canvas(formContainer as HTMLElement).then((canvas) => {
+  //       const imgData = canvas.toDataURL('image/png');
+  //       const imgWidth = 210; // A4 width in mm
+  //       const pageHeight = 297; // A4 height in mm
+  //       const imgHeight = (canvas.height * imgWidth) / canvas.width;
+  //       let heightLeft = imgHeight;
+
+  //       const doc = new jsPDF('p', 'mm', 'a4');
+  //       let position = 0;
+
+  //       doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+  //       heightLeft -= pageHeight;
+
+  //       while (heightLeft >= 0) {
+  //         position = heightLeft - imgHeight;
+  //         doc.addPage();
+  //         doc.addImage(imgData, 'PNG', 0, position, imgWidth, imgHeight);
+  //         heightLeft -= pageHeight;
+  //       }
+
+  //       doc.save('Form_Builder.pdf');
+  //     });
+  //   }
+  // }
 
   loadTabs(): void {
     this.tabService.getTabs().subscribe((tabs) => {
@@ -155,14 +224,14 @@ export class DashboardComponent implements OnInit {
   }
 
   onDrop(event: DragEvent): void {
-    if (this.draggedItem) {
-      const dropContainer = document.querySelector('.drop-container');
-      if (dropContainer) {
-        const offsetX =
-          event.clientX - dropContainer.getBoundingClientRect().left;
-        const offsetY =
-          event.clientY - dropContainer.getBoundingClientRect().top;
+    const dropContainer = document.querySelector('.drop-container');
 
+    if (dropContainer) {
+      const offsetX =
+        event.clientX - dropContainer.getBoundingClientRect().left;
+      const offsetY = event.clientY - dropContainer.getBoundingClientRect().top;
+
+      if (this.draggedItem) {
         const newComponent = {
           id: this.generateUniqueId(),
           activeTabId: this.getActiveTabId(),
@@ -177,7 +246,6 @@ export class DashboardComponent implements OnInit {
             alignment: 'flex-start',
             background: '#ffffff',
             padding: 15,
-            margin: 10,
             font: 'Arial',
             roundedCorners: 5,
             border: 2,
@@ -196,55 +264,47 @@ export class DashboardComponent implements OnInit {
             );
           }
         );
+
+        this.draggedItem = null; // Reset dragged item
+      } else if (this.draggedLayout) {
+        const gridComponents = this.getGridComponentCount(this.draggedLayout);
+        const newLayout = {
+          id: this.generateUniqueId(),
+          activeTabId: this.getActiveTabId(),
+          isSelected: false,
+          name: this.draggedLayout,
+          icon: 'icon-placeholder', // Placeholder icon for layout
+          position: { x: offsetX, y: offsetY },
+          gridComponent: gridComponents,
+          element: {
+            width: '',
+            height: '',
+            alignment: 'flex-start',
+            background: '#ffffff',
+            padding: '',
+            font: 'Arial',
+            roundedCorners: '',
+            border: '',
+            borderColor: '#000000',
+          },
+        };
+
+        this.componentService.addComponent(newLayout).subscribe(
+          () => {
+            this.toastrService.success('Layout added successfully!');
+            this.loadComponents(); // Reload components after addition
+          },
+          (error) => {
+            this.toastrService.error('Failed to add layout: ' + error.message);
+          }
+        );
+
+        this.draggedLayout = null;
+        this.showSectionModal = false;
       }
-
-      this.draggedItem = null; // Reset dragged item
     }
-    if (this.draggedLayout) {
-      const formContainer = document.querySelector(
-        '.drop-container'
-      ) as HTMLElement;
-      this.createLayout(this.draggedLayout, formContainer);
-      const offsetX =
-        event.clientX - formContainer.getBoundingClientRect().left;
-      const offsetY = event.clientY - formContainer.getBoundingClientRect().top;
-
-      const newLayout = {
-        id: this.generateUniqueId(),
-        activeTabId: this.getActiveTabId(),
-        isSelected: false,
-        name: this.draggedLayout,
-        icon: 'icon-placeholder', // Placeholder icon for layout
-        position: { x: offsetX, y: offsetY },
-        gridComponent: this.getGridComponentCount(this.draggedLayout),
-        element: {
-          width: 100,
-          height: 100,
-          alignment: 'flex-start',
-          background: '#ffffff',
-          padding: 15,
-          margin: 10,
-          font: 'Arial',
-          roundedCorners: 5,
-          border: 2,
-          borderColor: '#000000',
-        },
-      };
-
-      // Add layout to components array and save to JSON Server
-      this.componentService.addComponent(newLayout).subscribe(
-        () => {
-          this.toastrService.success('Layout added successfully!');
-          this.loadComponents(); // Reload components after addition
-        },
-        (error) => {
-          this.toastrService.error('Failed to add layout: ' + error.message);
-        }
-      );
-    }
-    this.draggedLayout = null;
-    this.showSectionModal = false;
   }
+
   createLayout(layout: string, formContainer: HTMLElement): void {
     const gridRow = document.createElement('div');
     gridRow.classList.add('grid-row');
@@ -310,7 +370,7 @@ export class DashboardComponent implements OnInit {
             name: component.name,
             icon: this.getComponentIcon(component.name),
             position: component.position,
-            gridComponent: [],
+            gridComponent: component.gridComponent || [],
             element: component.element,
           }))
           .filter(
@@ -361,6 +421,7 @@ export class DashboardComponent implements OnInit {
           component.position = { x: offsetX, y: offsetY };
           this.componentService.updateComponent(component).subscribe(
             () => {
+              this.loadComponents();
               this.toastrService.success(
                 'Component position updated successfully!'
               );
@@ -548,8 +609,9 @@ export class DashboardComponent implements OnInit {
     this.components[index].showDelete = false;
   }
 
-  showComponentLog(index: number) {
+  showComponent(index: number) {
     const component = this.components[index];
+    console.log(component);
 
     this.components.forEach((comp) => {
       if (comp.id !== component.id && comp.isSelected) {
